@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+    style="min-"
+>
 <head>
   <meta charset="UTF-8">
   <title>My App</title>
   <link th:fragment= "link-css"
         rel="stylesheet" th:href="@{/css/bootstrap.css}">
+  <link th:fragment= "link-css"
+        rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <header th:fragment="header">
@@ -27,6 +31,8 @@
           </li>
           <li class="nav-item"><a class="nav-link" href="/books">List Book</a></li>
           <li class="nav-item"><a class="nav-link" href="/books/add">Add Book</a></li>
+          <li class="nav-item"><a class="nav-link" href="/categories">List Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="/categories/add">Add Category</a></li>
         </ul>
       </div>
     </div>
@@ -35,9 +41,19 @@
 <div th:insert="~::${content}}">
   <!-- NOT DUNG TRANG CON-->
 </div>
-<footer th:fragment="footer">
-  <script th:src="@{/js/bootstrap.min.js}"><</script>
+<footer th:fragment="footer" id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50"
+      style="   position: fixed;
+                bottom: 0;
+                height: 50px;
+                width: 100%;
+                background-color: #f5f5f5;">
+
+    <div class="container text-center">
+      <small>Copyright &copy; Nguyễn Tiến Lợi - 2080601134</small>
+    </div>
+
 
 </footer>
+<script th:src="@{/js/bootstrap.min.js}"><</script>
 </body>
 </html>

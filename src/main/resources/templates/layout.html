@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-    style="min-"
->
+      xmlns:sec="http://www.thymeteaf.org/thymeleaf-extras-springsecurity4"
+    style="min">
 <head>
   <meta charset="UTF-8">
   <title>My App</title>
@@ -29,10 +29,19 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="/books">List Book</a></li>
-          <li class="nav-item"><a class="nav-link" href="/books/add">Add Book</a></li>
+          <li class="nav-item"><a class="nav-link" href="/book">List Book</a></li>
+          <li class="nav-item"><a class="nav-link" href="/book/add">Add Book</a></li>
           <li class="nav-item"><a class="nav-link" href="/categories">List Categories</a></li>
           <li class="nav-item"><a class="nav-link" href="/categories/add">Add Category</a></li>
+
+          <li sec:authorize="isAuthenticated()">
+            <form th:action = "@{/logout}" method="post">
+              <button class="btn btn-outline-danger" type="submit">Logout</button>
+            </form>
+          </li>
+          <li sec:authorrize="!isAuthenticated()">
+            <a class="btn btn-outline-primary" href="/login">Login</a>
+          </li>
         </ul>
       </div>
     </div>

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping("/book")
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -53,7 +53,7 @@ public class BookController {
             return "book/add";
         }
         bookService.addBook(book);
-        return "redirect:/books";
+        return "redirect:/book";
     }
 
 
@@ -80,19 +80,19 @@ public class BookController {
                 .ifPresent(book -> {
                     bookService.updateBook(updateBook);
                 });
-        return "redirect:/books";
+        return "redirect:/book";
     }
     @PostMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") long id){
         bookService.deleteBook(id);
-        return "redirect:/books";
+        return "redirect:/book";
     }
 
     @GetMapping ("/delete/{id}")
     public String deleteBook (@PathVariable ("id") Long id)  {
 
         bookService.deleteBook(id);
-        return "redirect:/books";
+        return "redirect:/book";
     }
 
 }

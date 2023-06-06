@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang = "en">
 <head>
     <meta charset="UTF-8">
     <title>My Categories List</title>
@@ -13,19 +15,16 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Action</th>
+            <th sec:authorize="hasAnyAuthority('ADMIN')">Action</th>
 
         </tr>
         <tr th:each="category : ${categories}">
             <td th:text="${category.id}"></td>
             <td th:text="${category.name}"></td>
-
-            <td>
+            <td sec:authorize="hasAnyAuthority('ADMIN')">
                 <a style="color: green" th:href="@{/categories/details/{id}(id=${category.id})}">List by category</a>
                 <a style="color: yellow" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
                 <a style="color: red" th:href="@{/categories/delete/{id}(id=${category.id})}" onclick="return confirm('Are you sure?')">Delete</a>
-
-
             </td>
         </tr>
     </table>

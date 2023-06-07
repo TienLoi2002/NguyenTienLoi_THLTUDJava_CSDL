@@ -25,10 +25,32 @@
                 <a style="color: green" th:href="@{/categories/details/{id}(id=${category.id})}">List by category</a>
                 <a style="color: yellow" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
                 <a style="color: red" th:href="@{/categories/delete/{id}(id=${category.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+                <a style="color: red" th:href="@{/categories/delete/{id}(id=${category.id})}" onclick="deleteCategory(this); return false;" class="text-danger" onsubmit="return confirm('Are you sure?')">Delete</a>
+
             </td>
         </tr>
     </table>
 </div>
+
+<script th:src="@{/js/jquery-3.7.0.slim.min.js}"></script>
+<script th:inline="javascript">
+    function deleteCategory(link) {
+      if (confirm('Are you sure ?')) {
+        $.ajax({
+          url: $(link).attr('href'),
+          type: 'DELETE',
+          success: result => {
+            if (!result.success) {
+              alert(result.message);
+            } else {
+              $(link).parent().parent().remove();
+            }
+          }
+        })
+      }
+    }
+ </script>
+
 <th:block th:replace="layout :: footer"></th:block>
 </body>
 </html>

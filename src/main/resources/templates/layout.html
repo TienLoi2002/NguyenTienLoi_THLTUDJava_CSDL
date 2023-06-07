@@ -29,12 +29,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="/book">List Book</a></li>
-          <li sec:authorize="hasAnyAuthority('ADMIN')" class="nav-item"><a class="nav-link" href="/book/add">Add Book</a></li>
-          <li class="nav-item"><a class="nav-link" href="/categories">List Categories</a></li>
-          <li sec:authorize="hasAnyAuthority('ADMIN')" class="nav-item"><a class="nav-link" href="/categories/add">Add Category</a></li>
+          <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/book">List Book</a></li>
+          <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/book/add">Add Book</a></li>
+          <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/categories">List Categories</a></li>
+          <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/categories/add">Add Category</a></li>
 
-          <li style="float: right" sec:authorize="isAuthenticated()">
+          <li sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" method="post">
               <button class="btn btn-outline-danger" type="submit">Logout</button>
             </form>
